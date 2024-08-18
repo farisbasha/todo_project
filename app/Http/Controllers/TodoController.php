@@ -9,8 +9,8 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::latest()->get();
-        return view('todos.index', compact('todos'));
+        // $todos = Todo::latest()->get();
+        return view('todos.index');
     }
 
     public function create()
@@ -63,5 +63,12 @@ class TodoController extends Controller
     {
         $todo->delete();
         return redirect()->route('todosList')->with('success', 'Todo deleted successfully.');
+    }
+
+
+    public function getAllLatestTodos()
+    {
+        $todos = Todo::latest()->get();
+        return response()->json($todos);
     }
 }
